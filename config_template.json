@@ -1,0 +1,10 @@
+{
+    "postgres_server": "<name or ip>",
+    "database": "<db name>",
+    "user": "<db user with insert permissions>",
+    "password": "<db user pwd>",
+    "local_collection_path": "<local temp file storage path>",
+    "backup_collection_path": "<long term backup path>",
+    "unity_project_id":  "<unity project id>",
+    "unity_export_api_key": "<unity api key>"
+}
