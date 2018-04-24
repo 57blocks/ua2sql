@@ -9,7 +9,7 @@ import time
 
 import requests
 from requests.auth import HTTPBasicAuth
-from sqlalchemy import create_engine, MetaData, Table, Integer, DateTime, String, Column, select, BigInteger, Numeric
+from sqlalchemy import create_engine, MetaData, Table, Integer, DateTime, String, Column, select, BigInteger, Numeric, Boolean
 from sqlalchemy.dialects import postgresql
 
 if len(sys.argv) < 2:
@@ -67,6 +67,37 @@ custom_table = Table('custom', metadata,
                      Column('name', String),
                      Column('custom_params', postgresql.JSONB)
                      )
+
+device_info_table = Table('deviceInfo', metadata,
+                    Column('id', Integer, primary_key=True),
+                    Column('ts', DateTime),
+                    Column('submit_time', DateTime),
+                    Column('appid', String),
+                    Column('userid', String),
+                    Column('sessionid', BigInteger),
+                    Column('remote_ip', String),
+                    Column('platform', String),
+                    Column('sdk_ver', String),
+                    Column('debug_device', Boolean),
+                    Column('user_agent', String),
+                    Column('debug_build', Boolean),
+                    Column('rooted_jailbroken', Boolean),
+                    Column('processor_type', String),
+                    Column('system_memory_size', String),
+                    Column('make', String),
+                    Column('app_ver', String),
+                    Column('deviceid', String),
+                    Column('license_type', String),
+                    Column('app_install_mode', String),
+                    Column('model', String),
+                    Column('engine_ver', String),
+                    Column('os_ver', String),
+                    Column('app_name', String),
+                    Column('timezone', String),
+                    Column('ads_tracking', Boolean),
+                    Column('adsid', String),
+                    Column('type', String)
+                    )
 
 transaction_table = Table('transaction', metadata,
                           Column('id', Integer, primary_key=True),
@@ -286,5 +317,6 @@ except:
 process_raw_dump('appStart', app_start_table, CONFIG['local_collection_path'], backup_path)
 process_raw_dump('custom', custom_table, CONFIG['local_collection_path'], backup_path)
 process_raw_dump('transaction', transaction_table, CONFIG['local_collection_path'], backup_path)
+process_raw_dump('deviceInfo', device_info_table, CONFIG['local_collection_path'], backup_path)
 
 print('*** COMPLETE ***')
