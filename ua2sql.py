@@ -164,7 +164,7 @@ def save_raw_analytics_dump(unity_project_id, unity_api_key, job_id, destination
     r = requests.get(uri, auth=HTTPBasicAuth(unity_project_id, unity_api_key))
 
     if r.status_code != 200:
-        print('unable to retrieve result due to HTTP error: ' + r.status_code)
+        print('unable to retrieve result due to HTTP error: ' + str(r.status_code))
         print('URI: ' + uri)
         return
 
