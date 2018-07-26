@@ -282,7 +282,7 @@ def process_raw_dump(job_type, table, local_dump_directory, remote_dump_director
                                        'json', job_type,
                                        continuationJobId)
 
-    print('started jobId: ' + str(jobId)
+    print('started jobId: ' + str(jobId))
 
     while not is_raw_analytics_dump_ready(CONFIG['unity_project_id'],
                                           CONFIG['unity_export_api_key'], jobId):
