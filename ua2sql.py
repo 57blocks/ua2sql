@@ -22,7 +22,7 @@ try:
     with open(sys.argv[1]) as f:
         CONFIG = json.load(f)
 except:
-    print('failed to read or parse config file: ' + sys.argv[1])
+    print('failed to read or parse config file: ' + str(sys.argv[1]))
     exit(1)
 
 if not CONFIG['user'] or not CONFIG['password'] or not CONFIG['postgres_server'] \
@@ -175,7 +175,7 @@ def save_raw_analytics_dump(unity_project_id, unity_api_key, job_id, destination
         return
 
     if 'fileList' not in responseJson['result']:
-        print('no files for job: ' + job_id)
+        print('no files for job: ' + str(job_id))
         return
 
     for fileToDownload in responseJson['result']['fileList']:
@@ -202,7 +202,7 @@ def find_previous_job_id(job_type):
     if result is None:
         return None
 
-    print('found previous job ' + result['jobId'] + ' for job type ' + job_type)
+    print('found previous job ' + str(result['jobId']) + ' for job type ' + job_type)
 
     return result['jobId']
 
@@ -282,7 +282,7 @@ def process_raw_dump(job_type, table, local_dump_directory, remote_dump_director
                                        'json', job_type,
                                        continuationJobId)
 
-    print('started jobId: ' + jobId)
+    print('started jobId: ' + str(jobId)
 
     while not is_raw_analytics_dump_ready(CONFIG['unity_project_id'],
                                           CONFIG['unity_export_api_key'], jobId):
